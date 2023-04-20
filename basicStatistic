@@ -1,0 +1,46 @@
+def create_pmf(data):
+    # Sort data before run this function
+    # Calculate the total number of data points
+    n = len(data)
+    
+    # Create an empty dictionary for the PMF
+    pmf = {}
+    
+    # For each data point, increment its count in the PMF dictionary
+    for value in data:
+        if value in pmf:
+            pmf[value] += 1
+        else:
+            pmf[value] = 1
+    
+    # Calculate the probability mass for each unique data point
+    for value in pmf:
+        pmf[value] /= n
+        
+    return pmf
+    
+    
+def create_pdf(pmf):
+    # Create an empty dictionary for the PDF
+    pdf = {}
+    
+    # For each value in the PMF, calculate its PDF value and add it to the PDF dictionary
+    for value, probability in pmf.items():
+        pdf[value] = probability
+    
+    return pdf
+
+
+def create_cdf(pmf):
+    # Create an empty dictionary for the CDF
+    cdf = {}
+    
+    # Calculate the initial cumulative probability as zero
+    cumulative_probability = 0
+    
+    # For each value in the PMF, add its probability to the cumulative probability and store it in the CDF dictionary
+    for value, probability in pmf.items():
+        cumulative_probability += probability
+        cdf[value] = cumulative_probability
+    
+    return cdf
